@@ -1,9 +1,22 @@
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+import createHash from '../../helpers/createHash';
+import fetchApi from '../../helpers/fetchApi';
 
-export const loginRequest = (email, password) => ({
-  type: LOGIN_REQUEST,
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
+export const loginSuccess = (name, email, image) => ({
+  type: LOGIN_SUCCESS,
   payload: {
+    name,
     email,
-    password,
+    image,
   },
 });
+
+export const loginRequest = (name, email) => {
+  const image = `https://www.gravatar.com/avatar/${createHash(email)}`;
+  return async (dispatch) => {
+    const response = await fetchApi('https://opentdb.com/api_token.php?command=request');
+    localStorage.setItem('token', response.token ?? '');
+    dispatch(loginSuccess(name, email, image));
+  };
+};
