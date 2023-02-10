@@ -6,21 +6,24 @@ import configIcon from '../images/config.png';
 
 class Header extends Component {
   render() {
-    const { history: { push }, user } = this.props;
+    const {
+      history: { push },
+      user,
+    } = this.props;
     const score = JSON.parse(localStorage.getItem('player') ?? '{}').score ?? 0;
     return (
       <header>
-        <img
-          data-testid="header-profile-picture"
-          src={ user.image }
-          alt="Foto de usuário"
-          width="50px" // TODO: colocar em css
-        />
-        <p data-testid="header-player-name">{ user.name }</p>
-        <p data-testid="header-score">{ score }</p>
         <nav>
+          <img
+            data-testid="header-profile-picture"
+            src={ user.image }
+            alt="Foto de usuário"
+            width="50px" // TODO: colocar em css
+          />
+          <p data-testid="header-player-name">{user.name}</p>
+          <p data-testid="header-score">{score}</p>
           <Button
-            handleClick={ () => push('/Settings') }
+            handleClick={ () => push('/settings') }
             image={ configIcon }
             testId="btn-settings"
           />
