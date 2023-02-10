@@ -1,0 +1,42 @@
+@keyframes transform {
+
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.login {
+  align-items: center;
+  background: url('../../images/background.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.formLogin {
+  align-items: center;
+  animation: transform 1s ease-in-out;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  padding: 50px;
+  position: relative;
+  width: 40%;
+}
+
+.triviaIcon {
+  height: 33%;
+}

@@ -6,10 +6,17 @@ import configIcon from '../images/config.png';
 
 class Header extends Component {
   render() {
-    const { history: { push } } = this.props;
-
+    const { history: { push }, user } = this.props;
+    const score = JSON.parse(localStorage.getItem('player') ?? '{}').score ?? 0;
     return (
       <header>
+        <img
+          data-testid="header-profile-picture"
+          src={ user.image }
+          alt="Foto de usuário"
+        />
+        <p data-testid="header-player-name">{ user.name }</p>
+        <p data-testid="header-score">{ score }</p>
         <nav>
           <Button
             handleClick={ () => push('/Settings') }
@@ -26,6 +33,7 @@ Header.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  user: PropTypes.shape().isRequired,
 };
 
 const mapStateToProps = ({ user }) => ({
