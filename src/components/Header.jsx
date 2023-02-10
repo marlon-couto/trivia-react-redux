@@ -14,6 +14,7 @@ class Header extends Component {
           data-testid="header-profile-picture"
           src={ user.image }
           alt="Foto de usuário"
+          width="50px" // TODO: colocar em css
         />
         <p data-testid="header-player-name">{ user.name }</p>
         <p data-testid="header-score">{ score }</p>

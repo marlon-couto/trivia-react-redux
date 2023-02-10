@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { decode } from 'he';
 import Button from './Button';
-import './css/Question.css';
+import './css/Button.css';
 
 export default class QuestionCard extends Component {
   state = {
+    shuffledAnswers: [],
     isAnswerSelected: false,
   };
+
+  componentDidMount() {
+    this.shuffleAnswers();
+  }
 
   handleClick = () => {
     this.setState({ isAnswerSelected: true });
@@ -18,38 +23,32 @@ export default class QuestionCard extends Component {
     return array.sort(() => Math.random() - magicNumber);
   };
 
-  shuffleAnswers = (isAnswerSelected) => {
+  shuffleAnswers = () => {
     const { question } = this.props;
 
-    const correctAnswer = (
-      <Button
-        testId="correct-answer"
-        key={ question.correct_answer }
-        text={ question.correct_answer }
-        handleClick={ this.handleClick }
-        customClass={ isAnswerSelected ? 'correct_answer' : '' }
-      />
-    );
+    const correctAnswer = {
+      name: question.correct_answer,
+      value: true,
+      class: 'correctAnswer',
+    };
 
-    const incorrectAnswers = question.incorrect_answers.map((answer, index) => (
-      <Button
-        testId={ `wrong-answer-${index}` }
-        key={ answer }
-        text={ answer }
-        handleClick={ this.handleClick }
-        customClass={ isAnswerSelected ? 'wrong_answer' : '' }
-      />
-    ));
+    const incorrectAnswers = question.incorrect_answers.map(
+      (answer, index) => ({
+        name: answer,
+        index,
+        value: false,
+        class: 'wrongAnswer',
+      }),
+    );
 
     const answers = [correctAnswer, ...incorrectAnswers];
 
-    return this.shuffle(answers);
+    this.setState({ shuffledAnswers: this.shuffle(answers) });
   };
 
   render() {
     const { question } = this.props;
-    const { isAnswerSelected } = this.state;
-    const shuffledAnswers = this.shuffleAnswers(isAnswerSelected);
+    const { shuffledAnswers, isAnswerSelected } = this.state;
 
     return (
       <div>
@@ -57,7 +56,17 @@ export default class QuestionCard extends Component {
         <h3 data-testid="question-text">{decode(question.question)}</h3>
 
         <div data-testid="answer-options">
-          {shuffledAnswers.map((answer) => answer)}
+          {shuffledAnswers.map((answer) => (
+            <Button
+              testId={
+                answer.value ? 'correct-answer' : `wrong-answer-${answer.index}`
+              }
+              key={ answer.name }
+              text={ answer.name }
+              handleClick={ this.handleClick }
+              customClass={ isAnswerSelected ? answer.class : undefined }
+            />
+          ))}
         </div>
       </div>
     );

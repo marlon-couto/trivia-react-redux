@@ -12,9 +12,10 @@ class Game extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.handleResponse();
-    }, 2000);
+    // const magicNumber = 2000;
+    // setTimeout(() => {
+    this.handleResponse();
+    // }, magicNumber);
   }
 
   handleResponse = async () => {

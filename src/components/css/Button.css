@@ -51,3 +51,12 @@
 }
 
 /* Button Config */
+
+/* Alternativas corretas e incorretas */
+.correctAnswer {
+  border: 3px solid rgb(6, 240, 15);
+}
+
+.wrongAnswer {
+  border: 3px solid red;
+}
