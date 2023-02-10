@@ -68,18 +68,24 @@
   padding: 0;
 }
 
-.questionAnswers {
+.secondary {
   align-items: center;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 40vh;
-  justify-content: space-between;
-  margin: auto 0;
-  padding: 15px;
+  height: 100vh;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 250px 0 0;
   position: relative;
   width: 50vw;
   z-index: 2;
+}
+
+.questionAnswers {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .questionTimer {

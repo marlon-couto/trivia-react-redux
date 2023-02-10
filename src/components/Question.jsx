@@ -112,31 +112,32 @@ class QuestionCard extends Component {
             className="trybeIcon"
           />
         </div>
-        <div
-          data-testid="answer-options"
-          className="questionAnswers"
-        >
-          {shuffledAnswers.map((answer) => (
+        <div className="secondary">
+          <div
+            data-testid="answer-options"
+            className="questionAnswers"
+          >
+            {shuffledAnswers.map((answer) => (
+              <Button
+                testId={
+                  answer.value ? 'correct-answer' : `wrong-answer-${answer.index}`
+                }
+                key={ answer.name }
+                text={ decode(answer.name) }
+                handleClick={ () => this.handleClick(answer.value) }
+                customClass={ isAnswerSelected ? answer.class : 'option' }
+                disabled={ endCases }
+              />
+            ))}
+          </div>
+          {endCases && (
             <Button
-              testId={
-                answer.value ? 'correct-answer' : `wrong-answer-${answer.index}`
-              }
-              key={ answer.name }
-              text={ decode(answer.name) }
-              handleClick={ () => this.handleClick(answer.value) }
-              customClass={ isAnswerSelected ? answer.class : undefined }
-              disabled={ endCases }
+              testId="btn-next"
+              handleClick={ () => {} }
+              text="Next"
             />
-          ))}
+          )}
         </div>
-
-        {endCases && (
-          <Button
-            testId="btn-next"
-            handleClick={ () => {} }
-            text="Next"
-          />
-        )}
       </>
     );
   }
