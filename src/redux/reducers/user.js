@@ -1,4 +1,4 @@
-import logo from '../../images/logo.png';
+import logo from '../../images/anonymous.jpeg';
 import { LOGIN_SUCCESS } from '../actions';
 
 const INITIAL_STATE = {

@@ -1,0 +1,17 @@
+label {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+input {
+  border: 1px solid #e1e5eb;
+  border-radius: 0;
+  display: flex;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+  padding: 16px;
+  text-align: start;
+  width: 100%;
+}

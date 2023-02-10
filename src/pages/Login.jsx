@@ -6,6 +6,9 @@ import Button from '../components/Button';
 import { validateEmail, validateName } from '../helpers/validate';
 import { loginRequest } from '../redux/actions/user';
 import configIcon from '../images/config.png';
+import triviaIcon from '../images/logo.png';
+import trybeIcon from '../images/iconTrybe.png';
+import './css/Login.css';
 
 class Login extends Component {
   state = {
@@ -38,36 +41,48 @@ class Login extends Component {
     const { history: { push } } = this.props;
     return (
       <div className="login">
-        <Input
-          label="Nome"
-          handleChange={ this.handleChange }
-          name="name"
-          type="name"
-          value={ name }
-          testId="input-player-name"
-        />
 
-        <Input
-          label="E-mail"
-          handleChange={ this.handleChange }
-          name="email"
-          type="email"
-          value={ email }
-          testId="input-gravatar-email"
-        />
+        <img src={ triviaIcon } alt="Ícone do Trívia" className="triviaIcon" />
 
-        <Button
-          disabled={ isDisabled }
-          handleClick={ this.handleClick }
-          testId="btn-play"
-          text="Play"
-        />
+        <form className="formLogin">
 
-        <Button
-          handleClick={ () => push('/settings') }
-          image={ configIcon }
-          testId="btn-settings"
-        />
+          <Button
+            customClass="buttonConfig"
+            handleClick={ () => push('/settings') }
+            image={ configIcon }
+            testId="btn-settings"
+          />
+
+          <Input
+            placeholder="Qual é o seu nome?"
+            handleChange={ this.handleChange }
+            name="name"
+            type="name"
+            value={ name }
+            testId="input-player-name"
+          />
+
+          <Input
+            placeholder="Qual é o seu e-mail do gravatar?"
+            handleChange={ this.handleChange }
+            name="email"
+            type="email"
+            value={ email }
+            testId="input-gravatar-email"
+          />
+
+          <Button
+            customClass="buttonLogin"
+            disabled={ isDisabled }
+            handleClick={ this.handleClick }
+            testId="btn-play"
+            text="Play"
+          />
+
+        </form>
+
+        <img src={ trybeIcon } alt="Ícone da Trybe" />
+
       </div>
     );
   }
