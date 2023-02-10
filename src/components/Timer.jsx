@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import timerIcon from '../images/iconTimer.png';
 
 export default class Timer extends Component {
   state = {
@@ -37,7 +38,12 @@ export default class Timer extends Component {
 
     this.clearTimer();
 
-    return <h3>{seconds}</h3>;
+    return (
+      <h3 className="questionTimer">
+        <img src={ timerIcon } alt="" />
+        {`Tempo: ${seconds}s`}
+      </h3>
+    );
   }
 }
 

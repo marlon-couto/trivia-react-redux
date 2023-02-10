@@ -6,6 +6,8 @@ import Button from './Button';
 import Timer from './Timer';
 import calculatePoints from '../helpers/calculatePoints';
 import { saveScore } from '../redux/actions/player';
+import triviaIcon from '../images/logo.png';
+import trybeIcon from '../images/iconTrybe.png';
 import './css/Button.css';
 import './css/Question.css';
 
@@ -84,20 +86,23 @@ class QuestionCard extends Component {
     const { shuffledAnswers, isAnswerSelected, isTimedOut } = this.state;
 
     return (
-      <div className="question">
-        <div className="questionBody">
-          <div className="questionCategory">
-            <h2 data-testid="question-category">{question.category}</h2>
+      <>
+        <div className="question">
+          <img src={ triviaIcon } alt="Ícone do Trívia" className="triviaIcon" />
+          <div className="questionBody">
+            <div className="questionCategory">
+              <h2 data-testid="question-category">{question.category}</h2>
+            </div>
+            <h3 data-testid="question-text">{decode(question.question)}</h3>
+            {!isAnswerSelected && (
+              <Timer
+                isTimedOut={ isTimedOut }
+                setTimedOut={ this.setTimedOut }
+              />
+            )}
           </div>
-          <h3 data-testid="question-text">{decode(question.question)}</h3>
-          {!isAnswerSelected && (
-            <Timer
-              isTimedOut={ isTimedOut }
-              setTimedOut={ this.setTimedOut }
-            />
-          )}
+          <img src={ trybeIcon } alt="Ícone da Trybe" className="trybeIcon" />
         </div>
-
         <div
           data-testid="answer-options"
           className="questionAnswers"
@@ -115,7 +120,7 @@ class QuestionCard extends Component {
             />
           ))}
         </div>
-      </div>
+      </>
     );
   }
 }

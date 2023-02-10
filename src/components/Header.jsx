@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import configIcon from '../images/config.png';
+import './css/Header.css';
+import './css/Button.css';
 
 class Header extends Component {
   render() {

@@ -1,22 +1,41 @@
 .question {
+  align-items: center;
+  box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   height: 100vh;
-  position: absolute;
-  width: 100vw;
-  z-index: 1;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 50px 0;
+  position: relative;
+  width: 50vw;
+  z-index: 2;
 }
 
-/* Question Body */
+.question > .triviaIcon {
+  height: 250px;
+}
+
+.question > .trybeIcon {
+  height: 50px;
+  margin: 30px 0;
+  padding: 0;
+}
+
 .questionBody {
+  align-items: center;
   background-color: white;
   border-radius: 10px;
   box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   height: 40vh;
-  margin: auto 5vw;
-  padding: 50px 0;
+  justify-content: center;
+  margin: 10% 0 0;
+  padding: 50px;
   position: relative;
-  width: 50vw;
+  width: 70%;
 }
 
 .questionCategory {
@@ -49,10 +68,25 @@
   padding: 0;
 }
 
-/* Question Answer */
 .questionAnswers {
-  background-color: white;
-  margin: auto 5vw;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  justify-content: space-between;
+  margin: auto 0;
+  padding: 15px;
   position: relative;
   width: 50vw;
+  z-index: 2;
+}
+
+.questionTimer {
+  bottom: 0;
+  color: #ea5d5d;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  position: absolute;
 }
