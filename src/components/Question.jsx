@@ -2,14 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { decode } from 'he';
 import Button from './Button';
+import './css/Question.css';
 
 export default class QuestionCard extends Component {
+  state = {
+    isAnswerSelected: false,
+  };
+
+  handleClick = () => {
+    this.setState({ isAnswerSelected: true });
+  };
+
   shuffle = (array) => {
     const magicNumber = 0.5;
     return array.sort(() => Math.random() - magicNumber);
   };
 
-  shuffleAnswers = () => {
+  shuffleAnswers = (isAnswerSelected) => {
     const { question } = this.props;
 
     const correctAnswer = (
@@ -17,8 +26,8 @@ export default class QuestionCard extends Component {
         testId="correct-answer"
         key={ question.correct_answer }
         text={ question.correct_answer }
-        handleClick={ () => {} }
-        className="correct-answer"
+        handleClick={ this.handleClick }
+        customClass={ isAnswerSelected ? 'correct_answer' : '' }
       />
     );
 
@@ -27,8 +36,8 @@ export default class QuestionCard extends Component {
         testId={ `wrong-answer-${index}` }
         key={ answer }
         text={ answer }
-        handleClick={ () => {} }
-        className="wrong-answer"
+        handleClick={ this.handleClick }
+        customClass={ isAnswerSelected ? 'wrong_answer' : '' }
       />
     ));
 
@@ -39,7 +48,8 @@ export default class QuestionCard extends Component {
 
   render() {
     const { question } = this.props;
-    const shuffledAnswers = this.shuffleAnswers();
+    const { isAnswerSelected } = this.state;
+    const shuffledAnswers = this.shuffleAnswers(isAnswerSelected);
 
     return (
       <div>

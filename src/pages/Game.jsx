@@ -12,17 +12,17 @@ class Game extends Component {
   };
 
   componentDidMount() {
-    this.handleResponse();
+    setTimeout(() => {
+      this.handleResponse();
+    }, 2000);
   }
 
   handleResponse = async () => {
     const { history } = this.props;
     const token = localStorage.getItem('token');
     const ERROR_CODE = 3;
-    console.log('token', token);
 
     const data = await fetchApi(`${URL}amount=5&token=${token}`);
-    console.log('data', data);
 
     if (data.response_code === ERROR_CODE) {
       localStorage.removeItem('token');
@@ -35,7 +35,6 @@ class Game extends Component {
   render() {
     const { history } = this.props;
     const { questions } = this.state;
-    console.log('questions', questions);
 
     return (
       <div>
