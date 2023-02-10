@@ -6,13 +6,13 @@ import md5 from 'crypto-js/md5';
 
 class Ranking extends Component {
   render() {
-    const { loginSuccess } = this.props;
-    const hash = md5(email).toString();
-    const ranking = JSON.parse(localStorage.getItem('ranking') && '[]');
+    // const { loginSuccess } = this.props;
+    // const hash = md5(email).toString();
+    // const ranking = JSON.parse(localStorage.getItem('ranking') && '[]');
     return (
       <div>
         <h1 data-testid="ranking-title">Ranking</h1>
-        <div>
+        {/* <div>
           {
             ranking?.map((player, index) => (
               <>
@@ -29,7 +29,7 @@ class Ranking extends Component {
               </>
             ))
           }
-        </div>
+        </div> */}
         <Link to="/">
           <button
             data-testid="btn-go-home"
