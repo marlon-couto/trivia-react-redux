@@ -1,0 +1,20 @@
+.game {
+  align-items: flex-start;
+  background: url('../../images/background.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+}
+
+.game > footer {
+  background-color: #3c1b7a;
+  bottom: 0;
+  height: 200px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}

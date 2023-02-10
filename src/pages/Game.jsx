@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Question from '../components/Question';
 import fetchApi from '../helpers/fetchApi';
+import './css/Game.css';
 
 const URL = 'https://opentdb.com/api.php?';
 
@@ -12,10 +13,7 @@ class Game extends Component {
   };
 
   componentDidMount() {
-    // const magicNumber = 2000;
-    // setTimeout(() => {
     this.handleResponse();
-    // }, magicNumber);
   }
 
   handleResponse = async () => {
@@ -38,9 +36,10 @@ class Game extends Component {
     const { questions } = this.state;
 
     return (
-      <div>
+      <div className="game">
         <Header history={ history } />
         {questions.length && <Question question={ questions[0] } />}
+        <footer />
       </div>
     );
   }

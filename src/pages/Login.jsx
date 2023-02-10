@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import { validateEmail, validateName } from '../helpers/validate';
-import { loginRequest } from '../redux/actions/user';
+import { loginRequest } from '../redux/actions/player';
 import configIcon from '../images/config.png';
 import triviaIcon from '../images/logo.png';
 import trybeIcon from '../images/iconTrybe.png';
