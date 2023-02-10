@@ -38,7 +38,9 @@ class Game extends Component {
     return (
       <div className="game">
         <Header history={ history } />
+
         {questions.length && <Question question={ questions[0] } />}
+
         <footer />
       </div>
     );

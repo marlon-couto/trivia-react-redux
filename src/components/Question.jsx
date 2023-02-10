@@ -84,11 +84,16 @@ class QuestionCard extends Component {
   render() {
     const { question } = this.props;
     const { shuffledAnswers, isAnswerSelected, isTimedOut } = this.state;
+    const endCases = isAnswerSelected || isTimedOut;
 
     return (
       <>
         <div className="question">
-          <img src={ triviaIcon } alt="Ícone do Trívia" className="triviaIcon" />
+          <img
+            src={ triviaIcon }
+            alt="Ícone do Trívia"
+            className="triviaIcon"
+          />
           <div className="questionBody">
             <div className="questionCategory">
               <h2 data-testid="question-category">{question.category}</h2>
@@ -101,7 +106,11 @@ class QuestionCard extends Component {
               />
             )}
           </div>
-          <img src={ trybeIcon } alt="Ícone da Trybe" className="trybeIcon" />
+          <img
+            src={ trybeIcon }
+            alt="Ícone da Trybe"
+            className="trybeIcon"
+          />
         </div>
         <div
           data-testid="answer-options"
@@ -116,10 +125,18 @@ class QuestionCard extends Component {
               text={ decode(answer.name) }
               handleClick={ () => this.handleClick(answer.value) }
               customClass={ isAnswerSelected ? answer.class : undefined }
-              disabled={ isTimedOut || isAnswerSelected }
+              disabled={ endCases }
             />
           ))}
         </div>
+
+        {endCases && (
+          <Button
+            testId="btn-next"
+            handleClick={ () => {} }
+            text="Next"
+          />
+        )}
       </>
     );
   }
