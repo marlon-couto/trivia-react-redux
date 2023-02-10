@@ -33,7 +33,7 @@ class QuestionCard extends Component {
         score: value
           ? prevState.score
             + calculatePoints(question, prevState.secondsRemaining)
-          : score,
+          : prevState.score,
         assertions: value ? prevState.assertions + 1 : prevState.assertions,
       }),
       () => {
