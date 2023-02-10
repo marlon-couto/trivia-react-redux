@@ -8,7 +8,6 @@ class Ranking extends Component {
     return (
       <div>
         <h1 data-testid="ranking-title">Ranking</h1>
-
         <Link to="/">
           <button
             data-testid="btn-go-home"
@@ -21,11 +20,9 @@ class Ranking extends Component {
     );
   }
 }
-
 Ranking.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
 };
-
 export default connect()(Ranking);
