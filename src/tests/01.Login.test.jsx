@@ -3,16 +3,21 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndRedux } from './helpers/renderWithRouterAndRedux';
 import App from '../App';
-import { act } from 'react-dom/test-utils';
+import mockData from './helpers/mockData';
 
 const PLAYER_NAME = /input-player-name/i;
 const PLAYER_EMAIL = /input-gravatar-email/i;
-const TOKEN = {token: 'token-jogador'};
+const RESPONSE_API = {
+    token: 'token-jogador',
+    results: [
+        ...mockData.results,
+    ],
+};
 
 describe ('1 - Testa a tela de Login', () => {
     beforeEach(() => {
         jest.spyOn(global, 'fetch').mockResolvedValue({
-            json: jest.fn().mockImplementation(() => TOKEN),
+            json: jest.fn().mockImplementation(() => RESPONSE_API),
         });
     });
 
@@ -103,12 +108,12 @@ describe ('1 - Testa a tela de Login', () => {
         userEvent.click(buttonPlay);
         
         await waitFor(() => {
-          expect(global.fetch).toHaveBeenCalledTimes(1);
-          expect(history.location.pathname).toBe('/game');
-          expect(screen.getByText('Game')).toBeInTheDocument();
+          expect(global.fetch).toHaveBeenCalledTimes(2);
           expect(store.getState().user.name).toBe('grupo 14B');
+          expect(screen.getByTestId('question-text')).toBeInTheDocument();
+          expect(history.location.pathname).toBe('/game');
         });
-        
+       
     });
 
     it('a tela de login exibe um botão de configurações e ele redireciona para a página de configurações ao ser clicado', () => {
@@ -116,10 +121,10 @@ describe ('1 - Testa a tela de Login', () => {
 
         expect(history.location.pathname).toBe('/');
         
-        const bttnSettings = screen.getByTestId('btn-settings');
-        expect(bttnSettings).toBeInTheDocument();
+        const btnSettings = screen.getByTestId('btn-settings');
+        expect(btnSettings).toBeInTheDocument();
         
-        userEvent.click(bttnSettings);
+        userEvent.click(btnSettings);
         expect(history.location.pathname).toBe('/settings');
         
         const settings = screen.getByTestId('settings-title');
