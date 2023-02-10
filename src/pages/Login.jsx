@@ -32,8 +32,7 @@ class Login extends Component {
   handleClick = () => {
     const { email, name } = this.state;
     const { history: { push }, dispatch } = this.props;
-    dispatch(loginRequest(name, email));
-    push('/game');
+    dispatch(loginRequest(name, email, push));
   };
 
   render() {
