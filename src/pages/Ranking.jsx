@@ -21,6 +21,7 @@ class Ranking extends Component {
     );
   }
 }
+// teste
 
 Ranking.propTypes = {
   history: PropTypes.shape({
