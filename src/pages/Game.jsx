@@ -65,14 +65,18 @@ class Game extends Component {
   handleNext = () => {
     const { questions, currentQuestion: curr } = this.state;
     const maxQuestions = 4;
+
     if (curr < maxQuestions) {
-      this.setState(({ currentQuestion }) => ({
-        currentQuestion: currentQuestion < maxQuestions ? (
-          currentQuestion + 1) : maxQuestions,
-      }), () => {
-        const { currentQuestion } = this.state;
-        this.shuffleAnswers(questions[currentQuestion]);
-      });
+      this.setState(
+        ({ currentQuestion }) => ({
+          currentQuestion:
+            currentQuestion < maxQuestions ? currentQuestion + 1 : maxQuestions,
+        }),
+        () => {
+          const { currentQuestion } = this.state;
+          this.shuffleAnswers(questions[currentQuestion]);
+        },
+      );
     } else {
       const { history } = this.props;
       history.push('/feedback');
