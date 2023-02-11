@@ -11,7 +11,7 @@ import trybeIcon from '../images/iconTrybe.png';
 import './css/Button.css';
 import './css/Question.css';
 
-class QuestionCard extends Component {
+class Question extends Component {
   state = {
     isAnswerSelected: false,
     isTimedOut: false,
@@ -115,8 +115,8 @@ const mapStateToProps = ({ player }) => ({
   player,
 });
 
-export default connect(mapStateToProps)(QuestionCard);
+export default connect(mapStateToProps)(Question);
 
-QuestionCard.propTypes = {
+Question.propTypes = {
   question: PropTypes.shape({}),
 }.isRequired;
