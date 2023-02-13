@@ -17,7 +17,7 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       name: payload.name,
-      email: payload.email,
+      gravatarEmail: payload.gravatarEmail,
       image: payload.image,
     };
   }
