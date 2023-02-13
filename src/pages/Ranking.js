@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './css/Ranking.css';
 
 class Ranking extends Component {
   render() {
     const playerRanking = JSON.parse(localStorage.getItem('ranking') ?? '[]');
     return (
-      <div>
-        <h1 data-testid="ranking-title">Ranking</h1>
+      <div className="ranking">
+        <h1 data-testid="ranking-title" className="rankingTitle">Ranking</h1>
         <ol>
           {
             playerRanking.map((player, index) => (
