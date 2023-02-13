@@ -107,7 +107,7 @@ describe('1 - Testa a tela de Login', () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledTimes(2);
-      expect(store.getState().user.name).toBe('grupo 14B');
+      expect(store.getState().player.name).toBe('grupo 14B');
       expect(screen.getByTestId('question-text')).toBeInTheDocument();
       expect(history.location.pathname).toBe('/game');
     });

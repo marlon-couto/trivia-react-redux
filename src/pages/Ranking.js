@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '../components/Button';
 import triviaIcon from '../images/logo.png';
@@ -32,14 +31,14 @@ class Ranking extends Component {
             {
               playerRanking
                 .map((player, index) => (
-                  <li key={ player.name }>
+                  <li key={ `${player.name}-${player.score}` }>
                     <img src={ player.image } alt={ player.name } />
+                    Jogador:
                     <span data-testid={ `player-name-${index}` }>
-                      Jogador:
                       { player.name }
                     </span>
+                    Pontuação:
                     <span data-testid={ `player-score-${index}` }>
-                      Pontuação:
                       { player.score }
                     </span>
                   </li>
@@ -49,10 +48,10 @@ class Ranking extends Component {
           </ol>
 
           <Button
-            data-testid="btn-go-home"
+            testId="btn-go-home"
             text="Play Again"
             type="button"
-            handleClick={ () => { history.push('/'); } }
+            handleClick={ () => history.push('/') }
             customClass="rankingPlayButton"
           />
 

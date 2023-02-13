@@ -32,11 +32,9 @@ class Header extends Component {
               alt="Ícone de estrela"
               width="25px" // TODO: colocar em css
             />
+            <p>Pontos:</p>
             <p data-testid="header-score">
-              Pontos:
-              <strong>
-                {` ${player.score}`}
-              </strong>
+              {`${parseInt(player.score, 10)}`}
             </p>
           </div>
           <Button

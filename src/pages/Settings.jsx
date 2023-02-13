@@ -16,20 +16,24 @@ export default class Settings extends Component {
             name="categories"
             className="categoriesSelect"
             id="categories"
+            defaultValue="Categoria"
           >
-            <option value="" disabled selected hidden>Categoria</option>
+            <option value="Categoria" disabled hidden>Categoria</option>
             <option value="movie">Movie</option>
             <option value="cars">Cars</option>
             <option value="food">Food</option>
           </select>
-          <select name="difficulty" id="difficulty">
-            <option value="" disabled selected hidden>Dificuldade</option>
+          <select name="difficulty" id="difficulty" required defaultValue="Dificuldade">
+            <option value="Dificuldade" disabled hidden>Dificuldade</option>
             <option value="easy">Fácil</option>
             <option value="medium">Moderado</option>
             <option value="difficult">Difícil</option>
           </select>
-          <select name="type" id="type" required>
-            <option value="" disabled selected hidden>Tipo</option>
+          <select name="type" id="type" required defaultValue="Tipo">
+            <option value="Tipo" disabled hidden>Tipo</option>
+            <option value="easy">Fácil</option>
+            <option value="medium">Moderado</option>
+            <option value="difficult">Difícil</option>
           </select>
           <Button
             handleClick={ () => { history.push('/'); } }

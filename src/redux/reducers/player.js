@@ -19,6 +19,8 @@ const player = (state = INITIAL_STATE, action) => {
       name: payload.name,
       gravatarEmail: payload.gravatarEmail,
       image: payload.image,
+      score: 0,
+      assertions: 0,
     };
   }
 
@@ -26,7 +28,7 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: Number(payload.score) + Number(state.score),
-      assertions: payload.assertions,
+      assertions: Number(payload.assertions) + Number(state.assertions),
     };
   }
 
