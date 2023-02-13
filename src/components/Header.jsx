@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import configIcon from '../images/config.png';
+import starIcon from '../images/iconStar.png';
 import './css/Header.css';
 import './css/Button.css';
 
@@ -16,14 +17,28 @@ class Header extends Component {
     return (
       <header>
         <nav>
-          <img
-            data-testid="header-profile-picture"
-            src={ player.image }
-            alt="Foto de usuário"
-            width="50px" // TODO: colocar em css
-          />
-          <p data-testid="header-player-name">{player.name}</p>
-          <p data-testid="header-score">{player.score}</p>
+          <div className="headerUser">
+            <img
+              data-testid="header-profile-picture"
+              src={ player.image }
+              alt="Foto de usuário"
+            />
+            <p data-testid="header-player-name">{player.name}</p>
+          </div>
+          <div className="headerScore">
+            <img
+              data-testid="header-profile-picture"
+              src={ starIcon }
+              alt="Ícone de estrela"
+              width="25px" // TODO: colocar em css
+            />
+            <p data-testid="header-score">
+              Pontos:
+              <strong>
+                {` ${player.score}`}
+              </strong>
+            </p>
+          </div>
           <Button
             handleClick={ () => push('/settings') }
             image={ configIcon }

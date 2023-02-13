@@ -68,18 +68,27 @@
   padding: 0;
 }
 
-.questionAnswers {
-  align-items: center;
+.secondary {
+  align-items: flex-start;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 40vh;
-  justify-content: space-between;
-  margin: auto 0;
-  padding: 15px;
+  height: 100vh;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 270px 0 0;
   position: relative;
   width: 50vw;
-  z-index: 2;
+  z-index: 1;
+}
+
+.questionAnswers {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 45vh;
+  justify-content: center;
+  width: 100%;
 }
 
 .questionTimer {

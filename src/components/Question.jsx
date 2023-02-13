@@ -11,19 +11,14 @@ import trybeIcon from '../images/iconTrybe.png';
 import './css/Button.css';
 import './css/Question.css';
 
-class QuestionCard extends Component {
+class Question extends Component {
   state = {
-    shuffledAnswers: [],
     isAnswerSelected: false,
     isTimedOut: false,
     score: 0,
     secondsRemaining: 30,
     assertions: 0,
   };
-
-  componentDidMount() {
-    this.shuffleAnswers();
-  }
 
   handleClick = (value) => {
     const { question, dispatch } = this.props;
@@ -45,34 +40,6 @@ class QuestionCard extends Component {
     );
   };
 
-  shuffle = (array) => {
-    const magicNumber = 0.5;
-    return array.sort(() => Math.random() - magicNumber);
-  };
-
-  shuffleAnswers = () => {
-    const { question } = this.props;
-
-    const correctAnswer = {
-      name: question.correct_answer,
-      value: true,
-      class: 'correctAnswer',
-    };
-
-    const incorrectAnswers = question.incorrect_answers.map(
-      (answer, index) => ({
-        name: answer,
-        index,
-        value: false,
-        class: 'wrongAnswer',
-      }),
-    );
-
-    const answers = [correctAnswer, ...incorrectAnswers];
-
-    this.setState({ shuffledAnswers: this.shuffle(answers) });
-  };
-
   setTimedOut = (seconds) => {
     if (seconds === 0) {
       this.setState({ isTimedOut: true });
@@ -82,13 +49,18 @@ class QuestionCard extends Component {
   };
 
   render() {
-    const { question } = this.props;
-    const { shuffledAnswers, isAnswerSelected, isTimedOut } = this.state;
+    const { question, handleNext, shuffledAnswers } = this.props;
+    const { isAnswerSelected, isTimedOut } = this.state;
+    const endCases = isAnswerSelected || isTimedOut;
 
     return (
       <>
         <div className="question">
-          <img src={ triviaIcon } alt="Ícone do Trívia" className="triviaIcon" />
+          <img
+            src={ triviaIcon }
+            alt="Ícone do Trívia"
+            className="triviaIcon"
+          />
           <div className="questionBody">
             <div className="questionCategory">
               <h2 data-testid="question-category">{question.category}</h2>
@@ -101,24 +73,38 @@ class QuestionCard extends Component {
               />
             )}
           </div>
-          <img src={ trybeIcon } alt="Ícone da Trybe" className="trybeIcon" />
+          <img
+            src={ trybeIcon }
+            alt="Ícone da Trybe"
+            className="trybeIcon"
+          />
         </div>
-        <div
-          data-testid="answer-options"
-          className="questionAnswers"
-        >
-          {shuffledAnswers.map((answer) => (
+        <div className="secondary">
+          <div
+            data-testid="answer-options"
+            className="questionAnswers"
+          >
+            {shuffledAnswers.map((answer) => (
+              <Button
+                testId={
+                  answer.value ? 'correct-answer' : `wrong-answer-${answer.index}`
+                }
+                key={ answer.name }
+                text={ decode(answer.name) }
+                handleClick={ () => this.handleClick(answer.value) }
+                customClass={ isAnswerSelected ? answer.class : 'option' }
+                disabled={ endCases }
+              />
+            ))}
+          </div>
+          {endCases && (
             <Button
-              testId={
-                answer.value ? 'correct-answer' : `wrong-answer-${answer.index}`
-              }
-              key={ answer.name }
-              text={ decode(answer.name) }
-              handleClick={ () => this.handleClick(answer.value) }
-              customClass={ isAnswerSelected ? answer.class : undefined }
-              disabled={ isTimedOut || isAnswerSelected }
+              testId="btn-next"
+              handleClick={ handleNext }
+              text="Next"
+              customClass="buttonNext"
             />
-          ))}
+          )}
         </div>
       </>
     );
@@ -129,8 +115,8 @@ const mapStateToProps = ({ player }) => ({
   player,
 });
 
-export default connect(mapStateToProps)(QuestionCard);
+export default connect(mapStateToProps)(Question);
 
-QuestionCard.propTypes = {
+Question.propTypes = {
   question: PropTypes.shape({}),
 }.isRequired;

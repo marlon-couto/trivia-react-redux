@@ -16,13 +16,41 @@ header > nav {
   width: 50%;
 }
 
-header button {
+header > nav > button {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-header button:hover {
+header > nav > button:hover {
   scale: 1.1;
 }
 
+header p {
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+.headerUser {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+}
+
+.headerUser > img {
+  border-radius: 25px;
+  height: 50px;
+  width: 50px;
+}
+
+.headerScore {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}

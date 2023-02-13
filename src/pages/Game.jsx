@@ -10,11 +10,39 @@ const URL = 'https://opentdb.com/api.php?';
 class Game extends Component {
   state = {
     questions: [],
+    currentQuestion: 0,
+    shuffledAnswers: [],
   };
 
   componentDidMount() {
     this.handleResponse();
   }
+
+  shuffle = (array) => {
+    const magicNumber = 0.5;
+    return array.sort(() => Math.random() - magicNumber);
+  };
+
+  shuffleAnswers = (question) => {
+    const correctAnswer = {
+      name: question.correct_answer,
+      value: true,
+      class: 'correctAnswer',
+    };
+
+    const incorrectAnswers = question.incorrect_answers.map(
+      (answer, index) => ({
+        name: answer,
+        index,
+        value: false,
+        class: 'wrongAnswer',
+      }),
+    );
+
+    const answers = [correctAnswer, ...incorrectAnswers];
+
+    this.setState({ shuffledAnswers: this.shuffle(answers) });
+  };
 
   handleResponse = async () => {
     const { history } = this.props;
@@ -28,17 +56,53 @@ class Game extends Component {
       history.push('/');
     }
 
-    this.setState({ questions: data.results });
+    this.setState({ questions: data.results }, () => {
+      const { questions, currentQuestion } = this.state;
+      this.shuffleAnswers(questions[currentQuestion]);
+    });
+  };
+
+  handleNext = () => {
+    const { questions, currentQuestion: curr } = this.state;
+    const maxQuestions = 4;
+
+    if (curr < maxQuestions) {
+      this.setState(
+        ({ currentQuestion }) => ({
+          currentQuestion:
+            currentQuestion < maxQuestions ? currentQuestion + 1 : maxQuestions,
+        }),
+        () => {
+          const { currentQuestion } = this.state;
+          this.shuffleAnswers(questions[currentQuestion]);
+        },
+      );
+    } else {
+      const { history } = this.props;
+      history.push('/feedback');
+    }
   };
 
   render() {
     const { history } = this.props;
-    const { questions } = this.state;
+    const { questions, currentQuestion, shuffledAnswers } = this.state;
 
     return (
       <div className="game">
         <Header history={ history } />
-        {questions.length && <Question question={ questions[0] } />}
+
+        {questions.length && (
+          <Question
+            key={ currentQuestion }
+            // /\ Coloquei uma key pra remover todo o componente e renderizar novamente
+            // /\ quando o usuário clicar em "Next", e assim reconstruir o timer e os
+            // /\ demais componentes (buttons, etc...)
+            question={ questions[currentQuestion] }
+            handleNext={ this.handleNext }
+            shuffledAnswers={ shuffledAnswers }
+          />
+        )}
+
         <footer />
       </div>
     );

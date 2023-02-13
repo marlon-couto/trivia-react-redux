@@ -53,10 +53,112 @@
 /* Button Config */
 
 /* Alternativas corretas e incorretas */
+.wrongAnswer, .correctAnswer, .option {
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+}
+
+.wrongAnswer, .correctAnswer {
+  align-items: center;
+  background: white;
+  border-radius: 32px;
+  box-sizing: border-box;
+  display: flex;
+  height: 64px;
+  justify-content: center;
+  margin: 25px 0;
+  padding: 15px;
+  width: 90%;
+}
+
+.option {
+  align-items: center;
+  background: white;
+  border-radius: 32px;
+  box-sizing: border-box;
+  display: flex;
+  height: 64px;
+  justify-content: center;
+  margin: 25px 0;
+  padding: 15px;
+  width: 90%;
+}
+
+.option:hover {
+  cursor: pointer;
+  scale: 1.05;
+}
+
 .correctAnswer {
   border: 3px solid rgb(6, 240, 15);
+  filter: drop-shadow(0 0 6px rgb(6, 240, 15));
 }
 
 .wrongAnswer {
   border: 3px solid red;
+  filter: drop-shadow(0 0 6px red);
+}
+
+.correctAnswer:hover, .wrongAnswer:hover {
+  cursor: not-allowed;
+}
+
+.buttonNext {
+  align-items: center;
+  background: #2fc18c;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  height: 64px;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin: 25px 0;
+  padding: 0;
+  text-align: center;
+  width: 90%;
+}
+
+.buttonNext:hover {
+  cursor: pointer;
+  scale: 1.05;
+}
+
+.settingsPlayButton {
+  align-items: center;
+  background: #2fc18c;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin: 25px 0;
+  padding: 12px 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.settingsPlayButton:hover {
+  cursor: pointer;
+  scale: 1.05;
 }
