@@ -40,7 +40,7 @@ class Feedback extends React.Component {
                 onClick={ () => history.push('/ranking') }
                 data-testid="btn-ranking"
               >
-                Ver Ranking
+                Ranking
               </button>
               <button
                 className={ style.button }
@@ -48,7 +48,7 @@ class Feedback extends React.Component {
                 onClick={ () => history.push('/') }
                 data-testid="btn-play-again"
               >
-                Jogar novamente
+                Play Again
               </button>
             </section>
           </section>
