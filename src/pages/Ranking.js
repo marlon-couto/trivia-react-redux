@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '../components/Button';
 import triviaIcon from '../images/logo.png';
@@ -14,7 +13,6 @@ class Ranking extends Component {
   componentDidMount() {
     const playerRanking = JSON.parse(localStorage.getItem('ranking') ?? '[]');
     playerRanking.sort((a, b) => b.score - a.score);
-    console.log('playerRanking', playerRanking);
     this.setState({ playerRanking });
   }
 
@@ -53,7 +51,7 @@ class Ranking extends Component {
             testId="btn-go-home"
             text="Play Again"
             type="button"
-            handleClick={ () => { history.push('/'); } }
+            handleClick={ () => history.push('/') }
             customClass="rankingPlayButton"
           />
 
