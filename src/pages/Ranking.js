@@ -7,9 +7,19 @@ import triviaIcon from '../images/logo.png';
 import './css/Ranking.css';
 
 class Ranking extends Component {
+  state = {
+    playerRanking: [],
+  };
+
+  componentDidMount() {
+    const playerRanking = JSON.parse(localStorage.getItem('ranking') ?? '[]');
+    playerRanking.sort((a, b) => b.score - a.score);
+    this.setState({ playerRanking });
+  }
+
   render() {
     const { history } = this.props;
-    const playerRanking = JSON.parse(localStorage.getItem('ranking') ?? '[]');
+    const { playerRanking } = this.state;
     return (
       <div className="ranking">
         <div className="rankingForm">
@@ -21,7 +31,6 @@ class Ranking extends Component {
           <ol>
             {
               playerRanking
-                .sort((a, b) => b.score - a.score)
                 .map((player, index) => (
                   <li key={ player.name }>
                     <img src={ player.image } alt={ player.name } />
