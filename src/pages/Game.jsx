@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Question from '../components/Question';
 import fetchApi from '../helpers/fetchApi';
@@ -78,7 +79,10 @@ class Game extends Component {
         },
       );
     } else {
-      const { history } = this.props;
+      const { history, player } = this.props;
+      const rankings = JSON.parse(localStorage.getItem('ranking') ?? '[]');
+      rankings.push(player);
+      localStorage.setItem('ranking', JSON.stringify(rankings));
       history.push('/feedback');
     }
   };
@@ -94,9 +98,6 @@ class Game extends Component {
         {questions.length && (
           <Question
             key={ currentQuestion }
-            // /\ Coloquei uma key pra remover todo o componente e renderizar novamente
-            // /\ quando o usuário clicar em "Next", e assim reconstruir o timer e os
-            // /\ demais componentes (buttons, etc...)
             question={ questions[currentQuestion] }
             handleNext={ this.handleNext }
             shuffledAnswers={ shuffledAnswers }
@@ -115,4 +116,8 @@ Game.propTypes = {
   }),
 }.isRequired;
 
-export default Game;
+const mapStateToProps = ({ player }) => ({
+  player,
+});
+
+export default connect(mapStateToProps)(Game);

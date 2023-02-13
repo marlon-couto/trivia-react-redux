@@ -111,11 +111,7 @@ class Question extends Component {
   }
 }
 
-const mapStateToProps = ({ player }) => ({
-  player,
-});
-
-export default connect(mapStateToProps)(Question);
+export default connect()(Question);
 
 Question.propTypes = {
   question: PropTypes.shape({}),

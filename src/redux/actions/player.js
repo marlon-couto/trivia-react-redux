@@ -4,24 +4,24 @@ import fetchApi from '../../helpers/fetchApi';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const SAVE_SCORE = 'SAVE_SCORE';
 
-export const loginSuccess = (name, email, image) => ({
+export const loginSuccess = (name, gravatarEmail, image) => ({
   type: LOGIN_SUCCESS,
   payload: {
     name,
-    email,
+    gravatarEmail,
     image,
   },
 });
 
-export const loginRequest = (name, email, push) => {
-  const image = `https://www.gravatar.com/avatar/${createHash(email)}`;
+export const loginRequest = (name, gravatarEmail, push) => {
+  const image = `https://www.gravatar.com/avatar/${createHash(gravatarEmail)}`;
   return async (dispatch) => {
     const response = await fetchApi(
       'https://opentdb.com/api_token.php?command=request',
     );
     localStorage.setItem('token', response.token ?? '');
     push('/game');
-    dispatch(loginSuccess(name, email, image));
+    dispatch(loginSuccess(name, gravatarEmail, image));
   };
 };
 
