@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 
 class Ranking extends Component {
   render() {
-    const { name, score, image } = this.props;
-    const playerRanking = JSON.parse(localStorage.getItem('ranking'));
+    const playerRanking = JSON.parse(localStorage.getItem('ranking') ?? '[]');
     return (
       <div>
         <h1 data-testid="ranking-title">Ranking</h1>
